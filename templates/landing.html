@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learnova</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f0f0f0; margin: 0; padding: 0; }
+    .navbar { background-color: #003366; padding: 10px 20px; color: white; display: flex; justify-content: space-between; align-items: center; }
+    .navbar h1 { margin: 0; font-size: 22px; }
+    .navbar a { color: white; text-decoration: none; margin-left: 15px; font-size: 14px; }
+    .navbar a:hover { text-decoration: underline; }
+    .hero { background-color: #004080; color: white; text-align: center; padding: 60px 20px; }
+    .hero h2 { font-size: 30px; margin-bottom: 10px; }
+    .hero p { font-size: 16px; margin-bottom: 25px; }
+    .hero a { background-color: #ff6600; color: white; padding: 12px 25px; text-decoration: none; font-size: 16px; border-radius: 5px; margin: 5px; display: inline-block; }
+    .hero a:hover { background-color: #cc5200; }
+    .features { display: flex; justify-content: center; gap: 20px; padding: 40px 20px; flex-wrap: wrap; background: white; }
+    .feature-box { background-color: #e8f0fe; border: 2px solid #003366; border-radius: 8px; padding: 20px; width: 200px; text-align: center; }
+    .feature-box h3 { color: #003366; font-size: 16px; margin-bottom: 8px; }
+    .feature-box p { font-size: 13px; color: #333; }
+    .login-area { max-width: 400px; margin: 30px auto; background: white; padding: 30px; border: 1px solid #ccc; border-radius: 8px; }
+    .login-area h3 { text-align: center; color: #003366; margin-bottom: 20px; }
+    .login-area label { display: block; font-size: 14px; margin-bottom: 4px; color: #333; }
+    .login-area input { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #aaa; border-radius: 4px; font-size: 14px; box-sizing: border-box; }
+    .login-area button { width: 100%; background-color: #003366; color: white; padding: 10px; border: none; border-radius: 4px; font-size: 15px; cursor: pointer; }
+    .login-area button:hover { background-color: #002244; }
+    .login-area p { text-align: center; font-size: 13px; margin-top: 10px; color: #555; }
+    .login-area a { color: #003366; }
+    footer { background-color: #003366; color: white; text-align: center; padding: 15px; font-size: 13px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1>📚 Learnova</h1>
+    <div>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h2>Welcome to Learnova!</h2>
+    <p>A web app to help students manage their tasks, blogs and notes.</p>
+    <a href="{{ url_for('register') }}">Get Started</a>
+    <a href="{{ url_for('login') }}" style="background-color: white; color: #003366;">Login</a>
+  </div>
+
+  <div class="features">
+    <div class="feature-box">
+      <h3>📋 To-Do List</h3>
+      <p>Add tasks, set due dates and mark them as done.</p>
+    </div>
+    <div class="feature-box">
+      <h3>✍️ Blog</h3>
+      <p>Write blog posts and comment on others posts.</p>
+    </div>
+    <div class="feature-box">
+      <h3>🖼️ Notes</h3>
+      <p>Upload images of your notes and download them.</p>
+    </div>
+    <div class="feature-box">
+      <h3>🔐 Login</h3>
+      <p>Secure login system to keep your data safe.</p>
+    </div>
+  </div>
+
+  <div class="login-area">
+    <h3>Login to your account</h3>
+    <form method="POST" action="{{ url_for('login') }}">
+      <label>Email:</label>
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <label>Password:</label>
+      <input type="password" name="password" placeholder="Enter your password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+  </div>
+
+  <footer>
+    <p>Learnova &copy; 2025 | Made with Flask and Python | ET721 Project</p>
+  </footer>
+
+</body>
+</html>
