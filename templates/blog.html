@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Blog | Learnova{% endblock %}
+{% block content %}
+  <h1>Blog</h1>
+  <a class="button" href="{{ url_for('new_post') }}">Create New Post</a>
+  {% if posts %}
+    <div class="cards" style="margin-top:20px;">
+      {% for post in posts %}
+        <div class="card">
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.content[:180] }}{% if post.content|length > 180 %}...{% endif %}</p>
+          <p>Category: {{ post.category }} | Posted: {{ post.created_at.strftime('%Y-%m-%d') }}</p>
+          <a class="small-link" href="{{ url_for('blog_post', post_id=post.id) }}">Open post</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-state">No blog posts available yet. Start by creating one.</p>
+  {% endif %}
+{% endblock %}

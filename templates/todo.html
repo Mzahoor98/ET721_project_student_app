@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}To-Do | Learnova{% endblock %}
+{% block content %}
+  <h1>To-Do List</h1>
+  <div class="panel">
+    <form method="POST" action="{{ url_for('add_task') }}">
+      <div class="form-group">
+        <label>Task title</label>
+        <input type="text" name="title" required>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <input type="text" name="category" placeholder="Academic">
+      </div>
+      <div class="form-group">
+        <label>Due date</label>
+        <input type="date" name="due_date">
+      </div>
+      <div class="form-actions">
+        <button class="button" type="submit">Add Task</button>
+      </div>
+    </form>
+  </div>
+  {% if tasks %}
+    <div class="cards">
+      {% for task in tasks %}
+        <div class="card">
+          <h3>{{ task.title }}</h3>
+          <p>Category: {{ task.category }}</p>
+          <p>Due: {{ task.due_date or 'None' }}</p>
+          <p>Status: {{ 'Done' if task.completed else 'Pending' }}</p>
+          <a class="small-link" href="{{ url_for('complete_task', task_id=task.id) }}">Toggle complete</a>
+          <a class="small-link" href="{{ url_for('delete_task', task_id=task.id) }}" style="margin-left:12px;">Delete</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="empty-state">No tasks yet. Add your first task using the form above.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}New Post | Learnova{% endblock %}
+{% block content %}
+  <h1>Create a New Post</h1>
+  <div class="panel">
+    <form method="POST" action="{{ url_for('new_post') }}">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" required>
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <input type="text" name="category" placeholder="General">
+      </div>
+      <div class="form-group">
+        <label>Content</label>
+        <textarea name="content" rows="8" required></textarea>
+      </div>
+      <div class="form-actions">
+        <button class="button" type="submit">Publish Post</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
