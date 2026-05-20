@@ -13,14 +13,15 @@
         <input type="text" name="subject" placeholder="Subject or category">
       </div>
       <div class="form-group">
-        <label>Upload File</label>
-        <input type="file" name="file" required>
+        <label>Upload Image</label>
+        <input type="file" name="file" accept="image/*" required>
       </div>
       <div class="form-actions">
-        <button class="button" type="submit">Upload Note</button>
+        <button class="button" type="submit">Upload Image</button>
       </div>
     </form>
   </div>
+
   {% if notes %}
     <div class="cards">
       {% for note in notes %}
@@ -28,12 +29,22 @@
           <h3>{{ note.title }}</h3>
           <p>Subject: {{ note.subject }}</p>
           <p>Uploaded: {{ note.created_at.strftime('%Y-%m-%d') }}</p>
+
+          <div style="margin: 12px 0;">
+            <img
+              src="{{ url_for('download_note', note_id=note.id) }}"
+              alt="{{ note.title }}"
+              style="max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #e1e8f0;"
+            >
+          </div>
+
           <a class="small-link" href="{{ url_for('download_note', note_id=note.id) }}">Download</a>
           <a class="small-link" href="{{ url_for('delete_note', note_id=note.id) }}" style="margin-left:12px;">Delete</a>
         </div>
       {% endfor %}
     </div>
   {% else %}
-    <p class="empty-state">No notes uploaded yet. Add a note to see it here.</p>
+    <p class="empty-state">No notes uploaded yet. Add an image note to see it here.</p>
   {% endif %}
 {% endblock %}
+
